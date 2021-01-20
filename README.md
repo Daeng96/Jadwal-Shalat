@@ -1,17 +1,17 @@
 # JadwalWaktuShalat
-Library Jadwal Shalat
+Library android Untuk Jadwal Shalat
 
 # Contoh Cara Penggunaan
 
 allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
 	}
+}
   
   dependencies {
-	        implementation 'com.github.Daeng96:Jadwal-Shalat:1.0'
+	    implementation 'com.github.Daeng96:Jadwal-Shalat:1.0'
 	}
 
         val today = SimpleDate(GregorianCalendar())
@@ -19,4 +19,4 @@ allprojects {
         val azan = PrayerTimesCalculate(local, Methods.EGYPT_SURVEY)
         val pt = azan.getPrayerTimes(today)
         val tvq = findViewById<TextView>(R.id.tvQ)
-        tvq.text= pt.assr().toString()```
+        tvq.text= pt.assr().toString()
