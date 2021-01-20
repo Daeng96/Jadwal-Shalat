@@ -21,6 +21,4 @@ class MainActivity : AppCompatActivity() {
         tvQ.text = pyt.assr().toString()
     }
 }
-//https://github.com/Daeng96/JadwalShalat.git
-/*
-4b31d2cca5fd9c0465551df9a3dd56a1e24526f9*/
+
