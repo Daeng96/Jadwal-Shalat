@@ -1,0 +1,3 @@
+include ':prayertimes'
+include ':app'
+rootProject.name = "Jadwal Shalat"
