@@ -20,4 +20,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+github.properties
 >>>>>>> add files
