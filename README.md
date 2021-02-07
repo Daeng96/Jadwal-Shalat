@@ -2,7 +2,7 @@
 Library android Untuk Jadwal Shalat
 
 # Contoh Cara Penggunaan
-<pre><code>
+```
 allprojects {
 	repositories {
 		...
@@ -13,8 +13,8 @@ allprojects {
   dependencies {
 	    implementation 'com.github.Daeng96:Jadwal-Shalat:2.0'
 	}
-
-
+```
+```
 <pre><code>
         val today = SimpleDate(GregorianCalendar())
         val local = LocationPT(-5.0, 119.0, 8.0,0)
@@ -22,10 +22,10 @@ allprojects {
         val pt = azan.getPrayerTimes(today)
         val tvq = findViewById<TextView>(R.id.tvQ)
         tvq.text= pt.assr().toString()
-
+```
 
 # Umm Quro
-
+```
 	val ummQuro = UmmulQura()
         val fullDate = ummQuro.getFullCalendar(today)
 	val monthName = ummQuro.getMonthString(today)
@@ -33,7 +33,7 @@ allprojects {
 	val day = dates[0]
 	val month = dates[1]
 	val year = dates[2]	
-
+```
 
 # Lisensi
 
