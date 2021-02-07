@@ -1,2 +1,39 @@
 # JadwalWaktuShalat
-Library Jadwal Shalat
+Library android Untuk Jadwal Shalat
+
+# Contoh Cara Penggunaan
+<pre><code>
+allprojects {
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
+	}
+}
+  
+  dependencies {
+	    implementation 'com.github.Daeng96:Jadwal-Shalat:1.0'
+	}
+</code></pre>
+
+
+        val today = SimpleDate(GregorianCalendar())
+        val local = LocationPT(-5.0, 119.0, 8.0,0)
+        val azan = PrayerTimesCalculate(local, Methods.EGYPT_SURVEY)
+        val pt = azan.getPrayerTimes(today)
+        val tvq = findViewById<TextView>(R.id.tvQ)
+        tvq.text= pt.assr().toString()
+
+# Lisensi
+
+Ahmed Eltaher 2016
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
