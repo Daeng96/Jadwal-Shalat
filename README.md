@@ -37,6 +37,7 @@ allprojects {
 ### Lisensi
 
 Ahmed Eltaher 2016
+
 Modifications Copyright 2021 Akbar Sukku
 
 Licensed under the Apache License, Version 2.0 (the "License");
