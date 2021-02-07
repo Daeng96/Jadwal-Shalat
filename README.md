@@ -26,8 +26,6 @@ allprojects {
 
 # Umm Quro
 
-
-<pre><code>
 	val ummQuro = UmmulQura()
         val fullDate = ummQuro.getFullCalendar(today)
 	val monthName = ummQuro.getMonthString(today)
