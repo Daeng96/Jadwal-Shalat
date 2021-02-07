@@ -11,17 +11,31 @@ allprojects {
 }
   
   dependencies {
-	    implementation 'com.github.Daeng96:Jadwal-Shalat:1.0'
+	    implementation 'com.github.Daeng96:Jadwal-Shalat:2.0'
 	}
 </code></pre>
 
-
+<pre><code>
         val today = SimpleDate(GregorianCalendar())
         val local = LocationPT(-5.0, 119.0, 8.0,0)
         val azan = PrayerTimesCalculate(local, Methods.EGYPT_SURVEY)
         val pt = azan.getPrayerTimes(today)
         val tvq = findViewById<TextView>(R.id.tvQ)
         tvq.text= pt.assr().toString()
+<pre><code>
+
+# Umm Quro
+
+
+<pre><code>
+	val ummQuro = UmmulQura()
+        val fullDate = ummQuro.getFullCalendar(today)
+	val monthName = ummQuro.getMonthString(today)
+	val dates = ummQuro.getCalendarUmmQuro(today)
+	val day = dates[0]
+	val month = dates[1]
+	val year = dates[2]	
+<pre><code>
 
 # Lisensi
 
