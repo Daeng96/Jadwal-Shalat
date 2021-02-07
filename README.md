@@ -1,7 +1,7 @@
 # JadwalWaktuShalat
 Library android Untuk Jadwal Shalat
 
-# Contoh Cara Penggunaan
+### Contoh Cara Penggunaan
 ```
 allprojects {
 	repositories {
@@ -23,7 +23,7 @@ allprojects {
         tvq.text= pt.assr().toString()
 ```
 
-# Umm Quro
+### Umm Quro
 ```
 	val ummQuro = UmmulQura()
         val fullDate = ummQuro.getFullCalendar(today)
@@ -34,9 +34,10 @@ allprojects {
 	val year = dates[2]	
 ```
 
-# Lisensi
+### Lisensi
 
 Ahmed Eltaher 2016
+Modifications Copyright 2021 Akbar Sukku
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
