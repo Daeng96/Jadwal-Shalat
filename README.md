@@ -13,7 +13,7 @@ allprojects {
   dependencies {
 	    implementation 'com.github.Daeng96:Jadwal-Shalat:2.0'
 	}
-</code></pre>
+
 
 <pre><code>
         val today = SimpleDate(GregorianCalendar())
@@ -22,7 +22,7 @@ allprojects {
         val pt = azan.getPrayerTimes(today)
         val tvq = findViewById<TextView>(R.id.tvQ)
         tvq.text= pt.assr().toString()
-<pre><code>
+
 
 # Umm Quro
 
@@ -35,7 +35,7 @@ allprojects {
 	val day = dates[0]
 	val month = dates[1]
 	val year = dates[2]	
-<pre><code>
+
 
 # Lisensi
 
