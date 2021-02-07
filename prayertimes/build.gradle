@@ -1,8 +1,14 @@
-plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
-}
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
+
+group='com.github.daeng96'
+
+ext {
+    PUBLISH_GROUP_ID = 'com.daeng96'
+    PUBLISH_ARTIFACT_ID = 'prayertimes'
+    PUBLISH_VERSION = '1.0'
+}
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"

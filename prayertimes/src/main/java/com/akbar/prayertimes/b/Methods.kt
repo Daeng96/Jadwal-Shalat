@@ -224,7 +224,7 @@ class Methods {
          * parts of United States
          *
          */
-        val EGYPT_SURVEY = Methods(20.0, 18.0, Utils.DEF_IMSAAK_ANGLE, 0, 0, 0, Rounding.SPECIAL,
+        val EGYPT_SURVEY = Methods(19.5, 17.5, Utils.DEF_IMSAAK_ANGLE, 0, 0, 0, Rounding.SPECIAL,
                 Madzhab.SHAAFI, Utils.DEF_NEAREST_LATITUDE, ExtremeLatitude.GOOD_INVALID, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
 
         /**
@@ -289,6 +289,9 @@ class Methods {
          *
          */
         val FIXED_ISHAA = Methods(19.5, 0.0, Utils.DEF_IMSAAK_ANGLE, 0, 90, 0,
-                Rounding.SPECIAL, Madzhab.SHAAFI, Utils.DEF_NEAREST_LATITUDE, ExtremeLatitude.GOOD_INVALID, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+            Rounding.SPECIAL, Madzhab.SHAAFI, Utils.DEF_NEAREST_LATITUDE, ExtremeLatitude.GOOD_INVALID, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+
+        val KEMENAG_INDONESIA = Methods(20.0, 18.0, Utils.DEF_IMSAAK_ANGLE, 0, 0, 0, Rounding.SPECIAL,
+            Madzhab.SHAAFI, Utils.DEF_NEAREST_LATITUDE, ExtremeLatitude.GOOD_INVALID, true, 1.0, -2.0, 0.0, 0.0, 0.0, 0.0)
     }
 }

@@ -23,9 +23,7 @@ class Time {
         this.isExtreme = extreme
     }
 
-    constructor() {
-
-    }
+    constructor()
 
     /**
      * copy constructor

@@ -1,6 +1,9 @@
 package com.akbar.prayertimes.b
 
 import com.akbar.prayertimes.a.*
+import com.akbar.prayertimes.a.Utils.DEG_TO_RAD
+import com.akbar.prayertimes.a.Utils.KAABA_LONG
+import com.akbar.prayertimes.a.Utils.RAD_TO_DEG
 import java.util.*
 import kotlin.math.*
 
@@ -69,19 +72,18 @@ class PrayerTimesCalculate(private var location: LocationPT?, private var method
      * @param date SimpleDate object
      * @param pt instance of a AzanTimes object
      */
-    fun getPrayerTimes(date: SimpleDate, pt: AzanTimes) {
-        val dc: DayCouple
+    private fun getPrayerTimes(date: SimpleDate, pt: AzanTimes) {
 
-        dc = getDayInfo(date, location!!.gmtDiff)
+        val dc: DayCouple = getDayInfo(date, location!!.gmtDiff)
         getPrayerTimesByDay(dc, pt, PrayerTime.FAJR)
     }
 
-    internal fun getPrayerTimesByDay(dc: DayCouple, pt: AzanTimes, type: PrayerTime) {
+    private fun getPrayerTimesByDay(dc: DayCouple, pt: AzanTimes, type: PrayerTime) {
         getPrayerTimesByDay(method, dc, pt, type)
     }
 
-    internal fun getPrayerTimesByDay(method: Methods?, dc: DayCouple, pt: AzanTimes,
-                                     type: PrayerTime) {
+    private fun getPrayerTimesByDay(method: Methods?, dc: DayCouple, pt: AzanTimes,
+                                    type: PrayerTime) {
         var i: Int
         var invalid: Int
         val th: Double
@@ -103,7 +105,7 @@ class PrayerTimesCalculate(private var location: LocationPT?, private var method
 		 * if the actual values are already available. */
         AstrologyFormulas
                 .getAstroValuesByDay(dc.julianDay, location!!, astroCache, tAstro)
-        dec = Utils.DEG_TO_RAD(tAstro.dec[1])
+        dec = DEG_TO_RAD(tAstro.dec[1])
 
         /* Get Time Times formulae results for this day of year and this
 		 * location. The results are NOT the actual prayer times */
@@ -232,7 +234,7 @@ class PrayerTimesCalculate(private var location: LocationPT?, private var method
                     nGoodDay = dc.julianDay - i
                     AstrologyFormulas.getAstroValuesByDay(nGoodDay, location!!, exAstroPrev,
                             tAstro)
-                    exdecPrev = Utils.DEG_TO_RAD(tAstro.dec[1])
+                    exdecPrev = DEG_TO_RAD(tAstro.dec[1])
                     exFj = getFajIsh(lat, exdecPrev, method.fajrAng)
 
                     if (exFj != 99.0) {
@@ -250,7 +252,7 @@ class PrayerTimesCalculate(private var location: LocationPT?, private var method
                     nGoodDay = dc.julianDay + i
                     AstrologyFormulas.getAstroValuesByDay(nGoodDay, location!!, exAstroNext,
                             tAstro)
-                    exdecNext = Utils.DEG_TO_RAD(tAstro.dec[1])
+                    exdecNext = DEG_TO_RAD(tAstro.dec[1])
                     exFj = getFajIsh(lat, exdecNext, method.fajrAng)
                     if (exFj != 99.0) {
                         exIs = getFajIsh(lat, exdecNext, method.ishaaAng)
@@ -578,8 +580,8 @@ class PrayerTimesCalculate(private var location: LocationPT?, private var method
 
         internal fun getFajIsh(Lat: Double, dec: Double, Ang: Double): Double {
 
-            val part1 = cos(Utils.DEG_TO_RAD(Lat)) * cos(dec)
-            val part2 = -sin(Utils.DEG_TO_RAD(Ang)) - sin(Utils.DEG_TO_RAD(Lat)) * sin(dec)
+            val part1 = cos(DEG_TO_RAD(Lat)) * cos(dec)
+            val part2 = -sin(DEG_TO_RAD(Ang)) - sin(DEG_TO_RAD(Lat)) * sin(dec)
 
             val part3 = part2 / part1
             return if (part3 <= Utils.INVALID_TRIGGER) {
@@ -591,8 +593,7 @@ class PrayerTimesCalculate(private var location: LocationPT?, private var method
         internal fun getShoMag(loc: LocationPT, astro: Astro, type: PrayerTime): Double {
             val lhour: Double
             val sidG: Double
-            var ra0 = astro.ra[0]
-            var ra2 = astro.ra[2]
+            var ra0: Double
             val A: Double
             val B: Double
             val H: Double
@@ -600,10 +601,10 @@ class PrayerTimesCalculate(private var location: LocationPT?, private var method
             val R: Double
             val tH: Double
 
-            val part1 = sin(Utils.DEG_TO_RAD(loc.degreeLat)) * sin(Utils.DEG_TO_RAD(astro.dec[1]))
+            val part1 = sin(DEG_TO_RAD(loc.degreeLat)) * sin(DEG_TO_RAD(astro.dec[1]))
             val part2a = Utils.CENTER_OF_SUN_ANGLE
-            val part2 = sin(Utils.DEG_TO_RAD(part2a)) - part1
-            val part3 = cos(Utils.DEG_TO_RAD(loc.degreeLat)) * cos(Utils.DEG_TO_RAD(astro.dec[1]))
+            val part2 = sin(DEG_TO_RAD(part2a)) - part1
+            val part3 = cos(DEG_TO_RAD(loc.degreeLat)) * cos(DEG_TO_RAD(astro.dec[1]))
 
             val part4 = part2 / part3
 
@@ -623,7 +624,7 @@ class PrayerTimesCalculate(private var location: LocationPT?, private var method
             sidG = AstrologyFormulas.limitAngle(astro.sid[1] + 360.985647 * M)
 
             ra0 = astro.ra[0]
-            ra2 = astro.ra[2]
+            var ra2: Double = astro.ra[2]
 
             if (astro.ra[1] > 350 && astro.ra[2] < 10)
                 ra2 += 360.0
@@ -642,18 +643,20 @@ class PrayerTimesCalculate(private var location: LocationPT?, private var method
 
             tH = H - Utils.RAD_TO_DEG(astro.dra[1])
 
-            sunAlt = Utils.RAD_TO_DEG(asin(sin(Utils.DEG_TO_RAD(loc
-                    .degreeLat)) * sin(Utils.DEG_TO_RAD(B)) + (cos(Utils.DEG_TO_RAD(loc.degreeLat))
-                    * cos(Utils.DEG_TO_RAD(B))
-                    * cos(Utils.DEG_TO_RAD(tH)))))
+            sunAlt = Utils.RAD_TO_DEG(asin(sin(
+                DEG_TO_RAD(loc
+                    .degreeLat)
+            ) * sin(DEG_TO_RAD(B)) + (cos(DEG_TO_RAD(loc.degreeLat))
+                    * cos(DEG_TO_RAD(B))
+                    * cos(DEG_TO_RAD(tH)))))
 
             sunAlt += AstrologyFormulas.getRefraction(loc, sunAlt)
 
             R = M + (sunAlt - Utils.CENTER_OF_SUN_ANGLE + Utils.ALTITUDE_REFRACTION * loc.seaLevel.pow(
                 0.5
             )) / (360.0
-                    * cos(Utils.DEG_TO_RAD(B))
-                    * cos(Utils.DEG_TO_RAD(loc.degreeLat)) * sin(Utils.DEG_TO_RAD(tH)))
+                    * cos(DEG_TO_RAD(B))
+                    * cos(DEG_TO_RAD(loc.degreeLat)) * sin(DEG_TO_RAD(tH)))
 
             return R * 24.0
 
@@ -691,13 +694,13 @@ class PrayerTimesCalculate(private var location: LocationPT?, private var method
             val part4: Double
             val mathhabValue = if (madhhab == Madzhab.SHAAFI) 1 else 2
 
-            part1 = mathhabValue + tan(Utils.DEG_TO_RAD(Lat) - dec)
+            part1 = mathhabValue + tan(DEG_TO_RAD(Lat) - dec)
             if (part1 < 1 || Lat < 0)
-                part1 = mathhabValue + tan(Utils.DEG_TO_RAD(Lat) - dec)
+                part1 = mathhabValue + tan(DEG_TO_RAD(Lat) - dec)
 
             part2 = PI / 2.0 - atan(part1)
-            part3 = sin(part2) - sin(Utils.DEG_TO_RAD(Lat)) * sin(dec)
-            part4 = part3 / (cos(Utils.DEG_TO_RAD(Lat)) * cos(dec))
+            part3 = sin(part2) - sin(DEG_TO_RAD(Lat)) * sin(dec)
+            part4 = part3 / (cos(DEG_TO_RAD(Lat)) * cos(dec))
 
             /*  if (part4 > 1) */
             /*      return 99; */
@@ -739,10 +742,13 @@ class PrayerTimesCalculate(private var location: LocationPT?, private var method
          */
         fun getAdjustmentTimeToQiblaDirection(loc: LocationPT): SimpleTime {
             /* xxxthamer: reduce Utils.DEG_TO_RAD usage */
-            val num: Double = sin(Utils.DEG_TO_RAD(loc.degreeLong) - Utils.DEG_TO_RAD(Utils.KAABA_LONG))
-            val denom: Double = cos(Utils.DEG_TO_RAD(loc.degreeLat)) * tan(Utils.DEG_TO_RAD(Utils.KAABA_LAT)) - sin(Utils.DEG_TO_RAD(loc.degreeLat)) * cos(Utils.DEG_TO_RAD(loc.degreeLong) - Utils
-                            .DEG_TO_RAD(Utils.KAABA_LONG))
-            return SimpleTime(Utils.RAD_TO_DEG(atan2(num, denom)))
+            val num: Double = sin(DEG_TO_RAD(loc.degreeLong) - DEG_TO_RAD(KAABA_LONG))
+            val denom: Double = cos(DEG_TO_RAD(loc.degreeLat)) * tan(DEG_TO_RAD(Utils.KAABA_LAT)) - sin(
+                DEG_TO_RAD(loc.degreeLat)
+            ) * cos(
+                DEG_TO_RAD(loc.degreeLong) - DEG_TO_RAD(KAABA_LONG)
+            )
+            return SimpleTime(RAD_TO_DEG(atan2(num, denom)))
 
         }
     }
