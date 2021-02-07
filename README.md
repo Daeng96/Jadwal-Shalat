@@ -15,7 +15,6 @@ allprojects {
 	}
 ```
 ```
-<pre><code>
         val today = SimpleDate(GregorianCalendar())
         val local = LocationPT(-5.0, 119.0, 8.0,0)
         val azan = PrayerTimesCalculate(local, Methods.EGYPT_SURVEY)
