@@ -1809,7 +1809,7 @@ class UmmulQura {
         val month = getCalendarUmmQuro(date)
         val mm = month[1]
         val getMonth = monthName[mm]
-        return getMonth
+        return getMonth.toString()
     }
 
     fun getFullCalendar(date: SimpleDate, str : Int): String {
