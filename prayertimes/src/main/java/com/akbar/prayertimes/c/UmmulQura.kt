@@ -1775,28 +1775,54 @@ class UmmulQura {
         val monthName = HashMap<Int, String>()
         monthName[1] = "Muharram"
         monthName[2] = "Safar"
-        monthName[3] = "Rabiul Awal"
-        monthName[4] = "Rabiul Akhir"
-        monthName[5] = "Jumadil Awwal"
-        monthName[6] = "Jumadil Akhir"
+        monthName[3] = "Rabī‘ al-awwal"
+        monthName[4] = "Rabī‘ ath-thānī"
+        monthName[5] = "Jumādá al-ūlá"
+        monthName[6] = "Jumādá al-ākhirah"
         monthName[7] = "Rajab"
-        monthName[8] = "Sya'ban"
-        monthName[9] = "Ramdhan"
-        monthName[10] = "Syawal"
-        monthName[11] = "Dzulqa'idah"
-        monthName[12] = "Dzulhijjah"
+        monthName[8] = "Sha‘bān"
+        monthName[9] = "Ramaḍān"
+        monthName[10] = "Shawwāl"
+        monthName[11] = "Dhū al-Qa‘dah"
+        monthName[12] = "Dhū al-Ḥijjah"
+        val month = getCalendarUmmQuro(date)
+        val mm = month[1]
+        val getMonth = monthName[mm]
+        return getMonth
+    }
+    
+    
+    fun getMonthArabicString(date: SimpleDate): String {
+        val monthName = HashMap<Int, String>()
+        monthName[1] = "ٱلْمُحَرَّم"
+        monthName[2] = "صَفَر"
+        monthName[3] = "رَبِيع ٱلْأَوَّل"
+        monthName[4] = "رَبِيع ٱلْآخِر"
+        monthName[5] = "جُمَادَىٰ ٱلْأُولَىٰ"
+        monthName[6] = "جُمَادَىٰ ٱلْآخِرَة"
+        monthName[7] = "رَجَب"
+        monthName[8] = "شَعْبَان"
+        monthName[9] = "رَمَضَان"
+        monthName[10] = "شَوَّال"
+        monthName[11] = "ذُو ٱلْقَعْدَة"
+        monthName[12] = "ذُو ٱلْحِجَّة"
         val month = getCalendarUmmQuro(date)
         val mm = month[1]
         val getMonth = monthName[mm]
         return getMonth
     }
 
-    fun getFullCalendar(date: SimpleDate): String {
+    fun getFullCalendar(date: SimpleDate, str : Int): String {
         val mDate = setCalendarUmmQuro(date)
         val d = mDate[0].toString()
         val y = mDate[2].toString()
-        val mMonth = getMonthString(date)
-        val fullCal = "$d, $mMonth $y H"
+        val mMonth = if(str == 0){
+            getMonthString(date)
+        } else {
+            getMonthArabicString(date)
+        }
+      
+        val fullCal = "$d $mMonth $y"
         return fullCal
     }
 
