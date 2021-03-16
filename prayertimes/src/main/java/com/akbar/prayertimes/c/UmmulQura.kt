@@ -1814,15 +1814,15 @@ class UmmulQura {
 
     fun getFullCalendar(date: SimpleDate, str : Int): String {
         val mDate = setCalendarUmmQuro(date)
-        val d = mDate[0].toString()
-        val y = mDate[2].toString()
+        val day = mDate[0]
+        val year = mDate[2]
         val mMonth = if(str == 0){
             getMonthString(date)
         } else {
             getMonthArabicString(date)
         }
       
-        val fullCal = "$d $mMonth $y"
+        val fullCal = "$day $mMonth $year"
         return fullCal
     }
 
